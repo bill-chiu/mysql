@@ -1,0 +1,91 @@
+create database bbb;
+use aaa;
+
+drop table customer;
+create table customer(
+
+  customerID int primary key,
+  companyName varchar(20)
+);
+
+drop table orders;
+
+
+create table orders(
+  orderID int primary key,
+  customerID int
+);
+
+alter table orders
+  add constraint fk_customer_orders
+  foreign key (customerID) references customer(customerID)
+  on update cascade
+  on delete cascade;
+
+
+insert into customer values
+(1,'cust A'),(2,'cust B'),(3,'cust C');
+insert into orders values
+(1,1),(2,2),(3,1);
+
+select *from customer;
+
+insert into orders values
+(4,99);
+
+
+update customer set customerID =100 where customerID =1;
+
+delete FROM customer where customerID =1;
+
+
+ALTER TABLE orders  
+DROP CONSTRAINT fk_customer_orders;
+
+alter table customer add constraint uc unique(companyName)
+insert into customer values (4,'DDD');
+alter table customer drop constraint uc;
+
+
+alter unique idx_company on customer(companyName)
+insert into customer values (4,'DDD');
+alter table customer drop constraint uc;
+
+
+
+drop table t1;
+create table t1(
+    id int primary key,
+    data int
+);
+
+alter table t1
+    add constraint chk_data check (data>=0);
+
+insert into t1(id,data) value (1,200);
+insert into t1(id,data) value (2,-200);
+
+set sql_mode Z
+
+select * from t1;
+
+use db0806 
+create table www(
+
+id int primary key;
+  text char(5)
+)
+
+show variables like 'char%';
+set names big5;
+
+insert into www values (1,'dataA')
+
+insert into wwww values (2,'資料B')
+
+insert into wwww values (3,'資料C')
+
+select from www;
+
+
+
